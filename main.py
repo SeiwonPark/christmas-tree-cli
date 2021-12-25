@@ -52,7 +52,9 @@ if __name__ == "__main__":
     config = args.parse_args()
 
     if config.branch < 1 or config.width < 5:
-        args.error("Please check branch or width value")
+        args.error(
+            "Please check branch or width value.\n\nTree height ≥ 1\nTree width ≥ 5\n"
+        )
 
     while True:
         try:
