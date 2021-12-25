@@ -5,11 +5,11 @@ import time
 
 from colors import COLORS
 
-TREE_STUMP = "|l lI |"
+TREE_STUMP = "|l lI |         "
 
 
 def draw_tree(height=3, width=5):
-    tree = [COLORS.YELLOW2.value + "★"]
+    tree = [COLORS.YELLOW2.value + "★         "]
 
     for i in range(height):
         for j in range(width):
@@ -40,16 +40,19 @@ if __name__ == "__main__":
         "--branch",
         type=int,
         default=3,
-        help="Tree height. It will define the number of branches",
+        help="Tree height. It will define the number of branches. Tree height ≥ 1",
     )
     args.add_argument(
         "-w",
         "--width",
         type=int,
         default=5,
-        help="Tree width. It will define the number of leaves in its branch",
+        help="Tree width. It will define the number of leaves in its branch. Tree width ≥ 5",
     )
     config = args.parse_args()
+
+    if config.branch < 1 or config.width < 5:
+        args.error("Please check branch or width value")
 
     while True:
         try:
